@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AnvilAndQuill.Data;
 using AnvilAndQuill.DTOs;
 using AnvilAndQuill.Models;
+using AnvilAndQuill.Extensions;
 
 namespace AnvilAndQuill.Controllers
 {
@@ -61,8 +62,9 @@ namespace AnvilAndQuill.Controllers
 
         // PUT: api/Monsters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //update existing monster, full update
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMonster(int id, Monster monster)
+        public async Task<IActionResult> UpdateMonster(int id, Monster monster)
         {
             if (id != monster.Id)
             {
@@ -89,11 +91,25 @@ namespace AnvilAndQuill.Controllers
 
             return NoContent();
         }
+        // Update monster partial update
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateMonter(int id, [FromBody] MonsterUpdateDTO updateDTO)
+        {
+            var monster = await _context.Monsters.FindAsync(id);
+            if (monster == null)
+            {
+                return NotFound();
+            }
+            monster.UpdateFromDTO(updateDTO);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
+        }
 
         // POST: api/Monsters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Monster>> PostMonster(Monster monster)
+        public async Task<ActionResult<Monster>> CreateMonster(Monster monster)
         {
             _context.Monsters.Add(monster);
             await _context.SaveChangesAsync();

@@ -1,0 +1,6 @@
+@AnvilAndQuill_HostAddress = http://localhost:5018
+
+GET {{AnvilAndQuill_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

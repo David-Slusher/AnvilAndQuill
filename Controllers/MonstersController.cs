@@ -93,7 +93,7 @@ namespace AnvilAndQuill.Controllers
         }
         // Update monster partial update
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateMonter(int id, [FromBody] MonsterUpdateDTO updateDTO)
+        public async Task<IActionResult> UpdateMonster(int id, [FromBody] MonsterUpdateDTO updateDTO)
         {
             var monster = await _context.Monsters.FindAsync(id);
             if (monster == null)

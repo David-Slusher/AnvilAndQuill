@@ -73,7 +73,7 @@ function App() {
     return (
         <div className="app">
             <div className="container">
-                <h1 className="title">?? Monster Manager</h1>
+                <h1 className="title">Monster Compendium</h1>
 
                 {/* Error Message */}
                 {error && (
@@ -96,6 +96,7 @@ function App() {
                     >
                         <option value="">-- Choose a Monster Type --</option>
                         {monsterTypes.map(type => (
+                            //TODO why are key and value same?
                             <option key={type.id} value={type.id}>
                                 {type.name}
                             </option>

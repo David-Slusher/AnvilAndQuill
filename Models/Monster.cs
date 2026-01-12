@@ -5,7 +5,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
-        public int MonsterTypeId { get; set; }
-        public MonsterType? MonsterType { get; set; }
+        public int MonsterBandId { get; set; }
+        public MonsterBand? MonsterBand { get; set; }
     }
 }

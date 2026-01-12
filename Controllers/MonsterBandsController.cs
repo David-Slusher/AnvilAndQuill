@@ -12,47 +12,47 @@ namespace AnvilAndQuill.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MonsterTypesController : ControllerBase
+    public class MonsterBandsController : ControllerBase
     {
         private readonly MonsterDbContext _context;
 
-        public MonsterTypesController(MonsterDbContext context)
+        public MonsterBandsController(MonsterDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/MonsterTypes
+        // GET: api/MonsterBands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MonsterType>>> GetMonsterTypes()
+        public async Task<ActionResult<IEnumerable<MonsterBand>>> GetMonsterBands()
         {
-            return await _context.MonsterTypes.ToListAsync();
+            return await _context.MonsterBands.ToListAsync();
         }
 
-        // GET: api/MonsterTypes/5
+        // GET: api/MonsterBands/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MonsterType>> GetMonsterType(int id)
+        public async Task<ActionResult<MonsterBand>> GetMonsterBand(int id)
         {
-            var monsterType = await _context.MonsterTypes.FindAsync(id);
+            var MonsterBand = await _context.MonsterBands.FindAsync(id);
 
-            if (monsterType == null)
+            if (MonsterBand == null)
             {
                 return NotFound();
             }
 
-            return monsterType;
+            return MonsterBand;
         }
 
-        // PUT: api/MonsterTypes/5
+        // PUT: api/MonsterBands/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMonsterType(int id, MonsterType monsterType)
+        public async Task<IActionResult> PutMonsterBand(int id, MonsterBand MonsterBand)
         {
-            if (id != monsterType.Id)
+            if (id != MonsterBand.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(monsterType).State = EntityState.Modified;
+            _context.Entry(MonsterBand).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace AnvilAndQuill.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MonsterTypeExists(id))
+                if (!MonsterBandExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace AnvilAndQuill.Controllers
             return NoContent();
         }
 
-        // POST: api/MonsterTypes
+        // POST: api/MonsterBands
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<MonsterType>> PostMonsterType(MonsterType monsterType)
+        public async Task<ActionResult<MonsterBand>> PostMonsterBand(MonsterBand MonsterBand)
         {
-            _context.MonsterTypes.Add(monsterType);
+            _context.MonsterBands.Add(MonsterBand);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMonsterType", new { id = monsterType.Id }, monsterType);
+            return CreatedAtAction("GetMonsterBand", new { id = MonsterBand.Id }, MonsterBand);
         }
 
-        // DELETE: api/MonsterTypes/5
+        // DELETE: api/MonsterBands/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMonsterType(int id)
+        public async Task<IActionResult> DeleteMonsterBand(int id)
         {
-            var monsterType = await _context.MonsterTypes.FindAsync(id);
-            if (monsterType == null)
+            var MonsterBand = await _context.MonsterBands.FindAsync(id);
+            if (MonsterBand == null)
             {
                 return NotFound();
             }
 
-            _context.MonsterTypes.Remove(monsterType);
+            _context.MonsterBands.Remove(MonsterBand);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MonsterTypeExists(int id)
+        private bool MonsterBandExists(int id)
         {
-            return _context.MonsterTypes.Any(e => e.Id == id);
+            return _context.MonsterBands.Any(e => e.Id == id);
         }
     }
 }

@@ -10,6 +10,6 @@ namespace AnvilAndQuill.Data
         {
         }
         public DbSet<Monster> Monsters { get; set; } = null!;
-        public DbSet<MonsterType> MonsterTypes { get; set; } = null!;
+        public DbSet<MonsterBand> MonsterBands { get; set; } = null!;
     }
 }

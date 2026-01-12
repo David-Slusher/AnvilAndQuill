@@ -11,7 +11,7 @@ namespace AnvilAndQuill.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "MonsterTypes",
+                name: "monsterBands",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace AnvilAndQuill.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MonsterTypes", x => x.Id);
+                    table.PrimaryKey("PK_monsterBands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,23 +30,23 @@ namespace AnvilAndQuill.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MonsterTypeId = table.Column<int>(type: "int", nullable: false)
+                    monsterBandId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Monsters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Monsters_MonsterTypes_MonsterTypeId",
-                        column: x => x.MonsterTypeId,
-                        principalTable: "MonsterTypes",
+                        name: "FK_Monsters_monsterBands_monsterBandId",
+                        column: x => x.monsterBandId,
+                        principalTable: "monsterBands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Monsters_MonsterTypeId",
+                name: "IX_Monsters_monsterBandId",
                 table: "Monsters",
-                column: "MonsterTypeId");
+                column: "monsterBandId");
         }
 
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace AnvilAndQuill.Migrations
                 name: "Monsters");
 
             migrationBuilder.DropTable(
-                name: "MonsterTypes");
+                name: "monsterBands");
         }
     }
 }

@@ -3,6 +3,6 @@
     public class MonsterUpdateDTO
     {
         public string? Name { get; set; }
-        public int? MonsterTypeId { get; set; }
+        public int? MonsterBandId { get; set; }
     }
 }

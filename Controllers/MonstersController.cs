@@ -45,16 +45,16 @@ namespace AnvilAndQuill.Controllers
         }
 
         //GET: api/Monsters/ByType
-        [HttpGet("ByType/{monsterTypeId}")]
-        public async Task<ActionResult<IEnumerable<Monster>>> GetMonstersByType(int monsterTypeId)
+        [HttpGet("ByType/{monsterBandId}")]
+        public async Task<ActionResult<IEnumerable<Monster>>> GetMonstersByType(int monsterBandId)
         {
             var monsters = await _context.Monsters
-                .Where(m => m.MonsterTypeId == monsterTypeId)
+                .Where(m => m.MonsterBandId == monsterBandId)
                 .Select(m => new MonsterDTO
                 {
                     Id = m.Id,
                     Name = m.Name,
-                    MonsterTypeId = m.MonsterTypeId
+                    MonsterBandId = m.MonsterBandId
                 })
                 .ToListAsync();
             return Ok(monsters);
